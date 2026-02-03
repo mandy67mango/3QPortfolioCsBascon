@@ -25,8 +25,7 @@
       </head>
       <body>
         <h1 class="title">Club Sign Ups</h1>
-        <form action="submit" method="post"
-        onsubmit="return confirm('Submit now?')" onreset="return confirm('Clear all?')">
+        <form id="clubForm">
           <fieldset>
             <legend>Personal Details</legend><br>
             
@@ -68,7 +67,23 @@
 
           </fieldset><br>
           <button type="submit">Submit</button>
-          <button type="reset">Reset</button>
         </form>
+        <script>
+          document.getElementById("clubForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const studentData = {
+            student id: document.getElementById("id").value.trim(),
+            name: document.getElementById("fn").value,
+            birthday: document.getElementById("bd").value.trim(),
+            email: document.getElementById("ea").value.trim(),
+            number: document.getElementById("pn").value.trim(),
+            grade level: document.getElementById("gl").value,
+            intext: document.getElementById("Ioe").value
+            };
+            localStorage.setItem("studentData", JSON.stringify(studentData));
+
+            window.location.href = "viewSignUps.html";
+          });
+        </script>
       </body>
 </html>

@@ -24,51 +24,30 @@
       </style>
       </head>
       <body>
-        <h1 class="title">Club Sign Ups</h1>
-        <form action="submit" method="post"
-        onsubmit="return confirm('Submit now?')" onreset="return confirm('Clear all?')">
-          <fieldset>
-            <legend>Personal Details</legend><br>
-            
-            <label>Student Id: <input type="number" name="id" required></label><br>
-            <label>Full Name: <input type="text" name="fn" required></label><br>
-            <label>Birthday: <input type="date" name="bd" required></label><br>
-            <label>Email Address: <input type="email" name="ea" required></label><br>
-            <label>Phone Number: <input type="number" name="pn" required></label>
-          </fieldset><br><br>
-          <fieldset>
-            <legend>Other Info</legend><br>
-          <label>Grade Level:
-            <select name="gl" required>
-              <option value="">Choose</option>
-              <option value="G7">Grade 7</option>
-              <option value="G8">Grade 8</option>
-              <option value="G9">Grade 9</option>
-              <option value="G10">Grade 10</option>
-              <option value="G11">Grade 11</option>
-              <option value="G12">Grade 12</option></select>
-          </label><br>
-          <label>Intern or Extern?
-            <input type="radio" name="IN" value="I" required>Intern
-            <input type="radio" name="EX" value="E" required>Extern
-          </label><br>
-          <label>Preferred Club:
-            <select name="pc" required>
-              <option value="">Choose</option>
-              <option value="C1">Atom</option>
-              <option value="C2">Bravura</option>
-              <option value="C3">Care</option>
-              <option value="C4">Sagala</option>
-              <option value="C5">Sigasig</option>
-              <option value="C6">Tomorrow</option></select>
-          </label><br>
-        </fieldset><br>
-        <fieldset>
-          <label>Why do you want to join? <br><textarea name="wh" required></textarea></label><br>
+  
 
-          </fieldset><br>
-          <button type="submit">Submit</button>
-          <button type="reset">Reset</button>
-        </form>
-      </body>
+<h2>Submitted Student Information</h2>
+<div class="data" id="result"></div>
+
+<script>
+window.onload = function() {
+    const storedData = localStorage.getItem("studentData");
+
+    if (storedData) {
+        const student = JSON.parse(storedData);
+        document.getElementById("result").innerHTML = `
+            <p><strong>Student Id:</strong> ${student.id}</p>
+            <p><strong>Name:</strong> ${student.fn}</p>
+            <p><strong>Birthday:</strong> ${student.bd}</p>
+            <p><strong>Email:</strong> ${student.ea}</p>
+            <p><strong>Grade Level:</strong> ${student.gl}</p>
+            <p><strong>Intern/Extern:</strong> ${student.Ioe}</p>
+        `;
+    } else {
+        document.getElementById("result").innerHTML = "<p>No data found. Please fill out the form first.</p>";
+    }
+};
+</script>
+
+</body>
 </html>
